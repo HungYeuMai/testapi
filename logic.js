@@ -30,5 +30,16 @@ io.on("connection", function (socket) {
     socket.to(roomId).emit('typing', { msg, name, id })
   });
 
-  socket.on("disconnect", function () {});
+  socket.on("disconnect", function () {
+    console.log('====================================');
+    console.log(`client ${socket.id} disconnected`);
+    console.log('====================================');
+  });
+
+  socket.on('leave_room', ({ roomId })=>{
+    console.log('====================================');
+    console.log(id, ` leave the room `, roomId);
+    console.log('====================================');
+    socket.leave(roomId)
+  });
 });
