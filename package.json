@@ -6,8 +6,8 @@
   "scripts": {
     "test": "node index.js",
     "dev": "node index.js",
-    "start": "node index.js",
-    "bundle": "browserify --node --ignore-missing server.js | terser > bundle.js"
+    "start": "node bundle.js",
+    "bundle": "browserify --node --ignore-missing index.js | terser > bundle.js"
   },
   "keywords": [
     "chat",
