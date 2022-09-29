@@ -33,7 +33,7 @@ io.on("connection", function (socket) {
       console.log('====================================');
       console.log(roomId, 'disconnected');
       console.log('====================================');
-    });
+    }); 
     console.log('====================================');
   });
 
