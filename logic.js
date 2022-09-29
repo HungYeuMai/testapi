@@ -9,7 +9,7 @@ io.on("connection", function (socket) {
 
   socket.on("join-room", ({ roomId }) => {
     socket.join(roomId);
-    io.to(roomId).emit("new_user_join", { name, id, avt});
+    io.to(roomId).emit("new_user_join", { name, id, avt, time: Date.now() });
     console.log("====================================");
     console.log(`${id}-${name} joined to the room ${roomId}`);
     console.log("====================================");
@@ -19,22 +19,28 @@ io.on("connection", function (socket) {
     console.log("====================================");
     console.log("new msg", text, roomId);
     console.log("====================================");
-    io.to(roomId).emit("new_message", { text, name, id, avt });
+    io.to(roomId).emit("new_message", { text, name, id, avt, time: Date.now() });
   });
 
   socket.on("typing", function ({ msg, roomId }) {
-    io.to(roomId).emit("typing", { msg, name, id });
+    io.to(roomId).emit("typing", { msg, name, id,  avt, time: Date.now() });
   });
 
   socket.on("disconnecting", () => {
-    console.log('====================================');
-    socket.rooms.forEach(roomId => {
-      io.to(roomId).emit('new_message', { text:`${name} left the conversation`, name, id, avt } )
-      console.log('====================================');
-      console.log(roomId, 'disconnected');
-      console.log('====================================');
-    }); 
-    console.log('====================================');
+    console.log("====================================");
+    socket.rooms.forEach((roomId) => {
+      io.to(roomId).emit("new_message", {
+        text: `${name} left the conversation`,
+        name,
+        id,
+        avt,
+        time: Date.now()
+      });
+      console.log("====================================");
+      console.log(roomId, "disconnected");
+      console.log("====================================");
+    });
+    console.log("====================================");
   });
 
   socket.on("disconnect", function () {
