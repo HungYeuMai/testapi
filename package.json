@@ -7,7 +7,7 @@
     "test": "node index.js",
     "dev": "node index.js",
     "start": "node bundle.js",
-    "bundle": "browserify --node --ignore-missing index.js | terser > bundle.js"
+    "build": "browserify --node --ignore-missing index.js | terser > bundle.js"
   },
   "keywords": [
     "chat",
