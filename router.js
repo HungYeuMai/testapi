@@ -7,3 +7,11 @@ app.get("/rooms", (req, res) => {
         data: mock.rooms
     })
 });
+
+app.post('/',(req,res)=>{
+    console.log('====================================');
+    console.log(req.body, req.params, req.query);
+    console.log('====================================');
+
+    res.json(req.body)
+})
